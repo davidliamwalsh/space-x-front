@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames';
+import moment from 'moment'
 
 export default function LaunchItem({ launch: { flight_number, mission_name, launch_year, launch_date_local, launch_success } }) {
   return (
@@ -11,7 +12,7 @@ export default function LaunchItem({ launch: { flight_number, mission_name, laun
               'text-danger': !launch_success
             })}>{mission_name}</span>
           </h4>
-          <p>Launch Date: {launch_date_local}</p>
+          <p>Launch Date: {moment(launch_date_local).format('LLLL')}</p>
         </div>
         <div className="col-md-3">
           <a href={`/launch/${flight_number}`} className="btn btn-secondary">
