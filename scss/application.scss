@@ -1,0 +1,28 @@
+@import "~bootswatch/dist/darkly/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/darkly/bootswatch";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 12px;
+  color: #FAFBFC;
+  background: black;
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+img {
+  display: block;
+  height: 50vh;
+  width: 50%;
+  min-width: 300px;
+  margin: auto;
+}
