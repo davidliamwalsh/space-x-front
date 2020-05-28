@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 import { Query } from 'react-apollo' 
 import LaunchItem from './LaunchItem'
 import MissionKey from './MissionKey'
+import { Facebook } from 'react-content-loader'
 
 const LAUNCHES_QUERY = gql `
   query LaunchesQuery {
@@ -18,11 +19,20 @@ const LAUNCHES_QUERY = gql `
 
 export class Launches extends Component {
   render() {
+    const MyFacebookLoader = () => <Facebook
+    height={200}
+    speed={1}
+    backgroundColor={'#333'}
+    foregroundColor={'#999'}
+    />
+
     return ( 
       <Query query={LAUNCHES_QUERY}>
         {({ loading, error, data }) => {
-          if (loading) return <h4>Loading...</h4>
-          if (error) console.log(error);
+          if (loading) return <div className="container">
+            <MyFacebookLoader />
+          </div>
+          if (error) console.log(error)
 
           return (
             <div className="container">
@@ -32,7 +42,7 @@ export class Launches extends Component {
                 <LaunchItem key={launch.flight_number} launch={launch} />
               ))}
             </div>
-          );
+          )
         }}
       </Query>
     )
