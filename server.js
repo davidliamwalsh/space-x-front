@@ -14,6 +14,10 @@ app.prepare()
     return app.render(req, res, '/', req.query)
   })
 
+  server.get('/launch/:flight_number', (req, res) => {
+    return app.render(req, res, '/launch', { flight_number: req.params.flight_number })
+  })
+
   server.get('*', (req, res) => {
     return handle(req, res)
   })
