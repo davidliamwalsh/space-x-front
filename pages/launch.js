@@ -1,25 +1,19 @@
 import React, { Component } from 'react'
-import { ApolloProvider } from 'react-apollo'
-import ApolloClient from 'apollo-boost'
-import classNames from 'classnames';
+import withData from '../lib/withData'
 import Launch from '../components/Launch'
 import Layout from '../components/Layout'
 
-const client = new ApolloClient({
-  uri: 'https://space-x-back.herokuapp.com/graphql'
-})
 
-export class launch extends Component {
+
+class launch extends Component {
   render() {
 
     return (
       <Layout>
-        <ApolloProvider client={client}>
-          <Launch />
-        </ApolloProvider>
+        <Launch />
       </Layout>
     )
   }
 }
 
-export default launch
+export default withData(launch)
