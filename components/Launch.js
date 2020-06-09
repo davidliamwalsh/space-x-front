@@ -6,24 +6,29 @@ import classNames from 'classnames'
 import Link from 'next/link'
 import { Facebook } from 'react-content-loader'
 
-const LAUNCH_QUERY = gql`
-  query LaunchQuery($flight_number: Int!) {
-    launch(flight_number: $flight_number) {
-      flight_number
-      mission_name
-      launch_year
-      launch_success
-      launch_date_local
-      rocket {
-        rocket_id
-        rocket_name
-        rocket_type
-      }
-    }
-  }
-`
-
 class Launch extends Component {
+
+  constructor (props) {
+    super(props)
+
+    this.LAUNCH_QUERY = gql`
+      query LaunchQuery($flight_number: Int!) {
+        launch(flight_number: $flight_number) {
+          flight_number
+          mission_name
+          launch_year
+          launch_success
+          launch_date_local
+          rocket {
+            rocket_id
+            rocket_name
+            rocket_type
+          }
+        }
+      }
+    `
+  }
+
   render () {
     let flight_number = this.props.router.query.flight_number
     flight_number = parseInt(flight_number)
@@ -36,7 +41,7 @@ class Launch extends Component {
     />
 
     return (
-      <Query query={LAUNCH_QUERY} variables={{flight_number}}>
+      <Query query={this.LAUNCH_QUERY} variables={{flight_number}}>
         {({ loading, error, data }) => {
           if (loading) return <div className="container">
             <MyFacebookLoader />
